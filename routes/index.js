@@ -26,6 +26,12 @@ router.get('/', function (req, res, next) {
   axios.all([getUsd(), getEur(), getGbp(), getAll()])
     .then(axios.spread(function (usd, eur, gbp , all) {
       let alls = all.data
+      alls.forEach(function(item){
+       var newSellig = Math.round(item.selling * 100) / 100
+       var newChange = Math.round(item.change_rate * 100) / 100
+       item.selling = newSellig
+       item.change_rate = newChange
+      });
       let usds = usd.data
       let eurs = eur.data
       let gbps = gbp.data

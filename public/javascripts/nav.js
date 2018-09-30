@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems, options);
   });
 
-  // Or with jQuery
 
   $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -12,9 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function() {
     $('#currency').DataTable( 
       {
-        "searching":false,
+        "searching":true,
         "responsive":true,
         "pageLength": 10
       }
  );
 } );
+
+$(document).ready(function () {
+  $('#sell').toFixed(2)
+})
