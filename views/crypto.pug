@@ -32,52 +32,67 @@ block content
       .card1
             .card.pink.lighten-2
               .card-content.white-text
-                span.card-title Dolar
+                span.card-title Bitcoin
                 p
-                  | Alış : #{usdBuy}
-                  | % #{usdChange}
-                if usdChange > 0 
+                  | Alış : #{btcBuy}
+                  | Volume : #{btcVolume}
+                  | % #{btcChange}
+                if btcChange > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
       .card2
             .card.indigo.darken-1
               .card-content.white-text
-                span.card-title Euro
+                span.card-title Ripple
                 p
-                  | Alış : #{eurBuy}
-                  | % #{eurChange}
-                if eurChange > 0 
+                  | Alış : #{xrpBuy}
+                  | Volume : #{xrpVolume}
+                  | % #{xrpChange}
+                if xrpChange > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
       .card3
             .card.cyan
               .card-content.white-text
-                span.card-title Sterlin
+                span.card-title Etherium
                 p
-                  | Alış : #{gbpBuy}
-                  | % #{gbpChange}
-                if gbpChange > 0 
+                  | Alış : #{ethBuy}
+                  | Volume : #{ethVolume}
+                  | % #{ethChange}
+                if ethChange > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
-    .tablo
-      .tablo1
-        table#currency.striped.blue-grey.lighten-1.mdl-data-table
-          thead
-            tr
-              th Adı
-              th Kodu
-              th Satış
-              th Değişim %
-          tbody
-            each all in alls
-              tr
-                td= all.full_name
-                td= all.code
-                td= all.selling
-                td= all.change_rate
+      .card4
+            .card.cyan
+              .card-content.lime.lighten-1
+                span.card-title LiteCoin
+                p
+                  | Alış : #{ltcBuy}
+                  | Volume : #{ltcVolume}
+                  | % #{ltcChange}
+                if ltcChange > 0 
+                  i.material-icons arrow_drop_up
+                else 
+                  i.material-icons arrow_drop_down
+    //- .tablo
+    //-   .tablo1
+    //-     table#currency.striped.blue-grey.lighten-1.mdl-data-table
+    //-       thead
+    //-         tr
+    //-           th Adı
+    //-           th Kodu
+    //-           th Satış
+    //-           th Değişim %
+    //-       tbody
+    //-         each all in alls
+    //-           tr
+    //-             td= all.full_name
+    //-             td= all.code
+    //-             td= all.selling
+    //-             td= all.change_rate
     .footer.blue.darken-4
       .footer-copyright
         | © 2018 
