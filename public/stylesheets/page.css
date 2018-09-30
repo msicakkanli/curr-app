@@ -1,0 +1,32 @@
+/* ===================================== 
+   Page Styles
+======================================== */
+
+* {
+	box-sizing: border-box;
+}
+
+.container > * {
+  color: #fff;
+  text-shadow: 0 2px 0 rgba(110,133,156,0.12);
+  padding: 0.85em;
+ 
+}
+.header {
+  color: black
+}
+.navbar {
+    background-color: #0d47a1;
+}
+.main {
+ 
+}
+.tablo {
+   
+}
+.footer {
+  background-color: #6e859c;
+}
+
+
+
