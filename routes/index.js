@@ -19,8 +19,12 @@ router.get('/', function (req, res, next) {
     let currencyApi = 'http://www.doviz.com/api/v1/currencies/GBP/latest'
     return axios.get(currencyApi)
   }
-  axios.all([getUsd(), getEur(), getGbp()])
-    .then(axios.spread(function (usd, eur, gbp) {
+  function getAll() {
+    let allApi = 'http://www.doviz.com/api/v1/currencies/all/latest'
+    return axios.get(allApi)
+  }
+  axios.all([getUsd(), getEur(), getGbp(), getAll()])
+    .then(axios.spread(function (usd, eur, gbp , all) {
       let usds = usd.data
       let eurs = eur.data
       let gbps = gbp.data
