@@ -83,25 +83,20 @@ block content
       //-         //-   a(href='#') This is a link
     .tablo
       .tablo1
-        table.striped.blue-grey.lighten-1
+        table#currency.striped.blue-grey.lighten-1.mdl-data-table
           thead
             tr
-              th Name
-              th Item Name
-              th Item Price
+              th Adı
+              th Kodu
+              th Satış
+              th Değişim %
           tbody
-            tr
-              td Alvin
-              td Eclair
-              td $0.87
-            tr
-              td Alan
-              td Jellybean
-              td $3.76
-            tr
-              td Jonathan
-              td Lollipop
-              td $7.00
+            each all in alls
+              tr
+                td= all.full_name
+                td= all.code
+                td= all.selling 
+                td= all.change_rate
     .footer.blue.darken-4
       .footer-copyright
         | © 2018 

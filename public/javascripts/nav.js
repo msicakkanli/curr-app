@@ -8,3 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
   $(document).ready(function(){
     $('.sidenav').sidenav();
   });
+
+  $(document).ready(function() {
+    $('#currency').DataTable( 
+      {
+        "searching":false,
+        "responsive":true,
+        "pageLength": 10
+      }
+ );
+} );
