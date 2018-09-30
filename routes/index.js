@@ -4,7 +4,6 @@ const axios = require('axios')
 
 
 
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   function getUsd() {
@@ -46,6 +45,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/crypto', function (req, res, next) {
+
+  
   function getBtc() {
     let cryptoApi = 'https://www.doviz.com/api/v1/coins/bitcoin/latest'
      return axios.get(cryptoApi)

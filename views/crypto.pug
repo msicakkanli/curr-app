@@ -34,7 +34,7 @@ block content
               .card-content.white-text
                 span.card-title Bitcoin
                 p
-                  | Alış : #{btcBuy}
+                  | Alış : #{btcBuy}$
                   | Volume : #{btcVolume}
                   | % #{btcChange}
                 if btcChange > 0 
@@ -46,7 +46,7 @@ block content
               .card-content.white-text
                 span.card-title Ripple
                 p
-                  | Alış : #{xrpBuy}
+                  | Alış : #{xrpBuy}$
                   | Volume : #{xrpVolume}
                   | % #{xrpChange}
                 if xrpChange > 0 
@@ -58,7 +58,7 @@ block content
               .card-content.white-text
                 span.card-title Etherium
                 p
-                  | Alış : #{ethBuy}
+                  | Alış : #{ethBuy}$
                   | Volume : #{ethVolume}
                   | % #{ethChange}
                 if ethChange > 0 
@@ -70,29 +70,31 @@ block content
               .card-content.lime.lighten-1
                 span.card-title LiteCoin
                 p
-                  | Alış : #{ltcBuy}
+                  | Alış : #{ltcBuy}$
                   | Volume : #{ltcVolume}
                   | % #{ltcChange}
                 if ltcChange > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
-    //- .tablo
-    //-   .tablo1
-    //-     table#currency.striped.blue-grey.lighten-1.mdl-data-table
-    //-       thead
-    //-         tr
-    //-           th Adı
-    //-           th Kodu
-    //-           th Satış
-    //-           th Değişim %
-    //-       tbody
-    //-         each all in alls
-    //-           tr
-    //-             td= all.full_name
-    //-             td= all.code
-    //-             td= all.selling
-    //-             td= all.change_rate
+    .tablo
+      .tablo1
+        table#currency.striped.blue-grey.lighten-1.mdl-data-table
+          thead
+            tr
+              th Adı
+              th Kodu
+              th Satış
+              th Değişim %
+              th Volume
+          tbody
+            each all in alls
+              tr
+                td= all.full_name
+                td= all.symbol
+                td= all.selling
+                td= all.change_rate
+                td= all.market_cap
     .footer.blue.darken-4
       .footer-copyright
         | © 2018 
