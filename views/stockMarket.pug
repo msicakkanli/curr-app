@@ -32,52 +32,69 @@ block content
       .card1
             .card.pink.lighten-2
               .card-content.white-text
-                span.card-title Dolar
+                span.card-title BIST 100
                 p
-                  | Alış : #{usdBuy}
-                  | % #{usdChange}
-                if usdChange > 0 
+                  | Index : #{x100s.latest}
+                  | 1. Seans Kapanış : #{x100s.first_seance_closing} 
+                  | 2. Seans Kapanış : #{x100s.first_seance_closing}
+                  | % #{x100Change}
+                if x100Change > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
       .card2
             .card.indigo.darken-1
               .card-content.white-text
-                span.card-title Euro
+                span.card-title BIST 50
                 p
-                  | Alış : #{eurBuy}
-                  | % #{eurChange}
-                if eurChange > 0 
+                  | Index : #{x50s.latest}
+                  | 1. Seans Kapanış : #{x50s.first_seance_closing} 
+                  | 2. Seans Kapanış : #{x50s.first_seance_closing}
+                  | % #{x50Change}
+                if x50Change > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
       .card3
             .card.cyan
               .card-content.white-text
-                span.card-title Sterlin
+                span.card-title BIST 30
                 p
-                  | Alış : #{gbpBuy}
-                  | % #{gbpChange}
-                if gbpChange > 0 
+                  | Index : #{x30s.latest}
+                  | 1. Seans Kapanış : #{x30s.first_seance_closing} 
+                  | 2. Seans Kapanış : #{x30s.first_seance_closing}
+                  | % #{x30Change}
+                if x30Change > 0 
                   i.material-icons arrow_drop_up
                 else 
                   i.material-icons arrow_drop_down
+    //-   .card4
+    //-         .card.cyan
+    //-           .card-content.lime.lighten-1
+    //-             span.card-title LiteCoin
+    //-             p
+    //-               | Alış : #{ltcBuy}
+    //-               | Volume : #{ltcVolume}
+    //-               | % #{ltcChange}
+    //-             if ltcChange > 0 
+    //-               i.material-icons arrow_drop_up
+    //-             else 
+    //-               i.material-icons arrow_drop_down
     .tablo
       .tablo1
         table#currency.striped.blue-grey.lighten-1.mdl-data-table
           thead
             tr
               th Adı
-              th Kodu
               th Satış
               th Değişim %
           tbody
-            each all in alls
+            each gold in golds
               tr
-                td= all.full_name
-                td= all.code
-                td= all.selling
-                td= all.change_rate
+                td= gold.full_name
+                td= gold.selling
+                td= gold.change_rate
+
     .footer.blue.darken-4
       .footer-copyright
         | © 2018 
