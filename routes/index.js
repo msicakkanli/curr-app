@@ -159,4 +159,8 @@ router.get('/stockMarket', function(req,res,next){
     }))
 })
 
+router.get('/login', function (req, res, next) {
+  res.render('login', {title: 'Money Tracker'})
+})
+
 module.exports = router;

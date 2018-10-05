@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .container
+    include navlogin.pug
+    .module.form-module
+        .toggle
+            i.fa.fa-times.fa-pencil
+            .tooltip Click Me
+        .form
+            h2 Login to your account
+            form
+            input(type='text', placeholder='Username')
+            input(type='password', placeholder='Password')
+            button Login
+        .form
+            h2 Create an account
+            form
+            input(type='text', placeholder='Username')
+            input(type='password', placeholder='Password')
+            input(type='email', placeholder='Email Address')
+            input(type='tel', placeholder='Phone Number')
+            button Register
+    .footer.blue.darken-4
+      .footer-copyright
+        | © 2018 
