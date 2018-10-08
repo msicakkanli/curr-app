@@ -1,26 +1,35 @@
 extends layout
 
 block content
-  .container
     include navlogin.pug
-    .module.form-module
-        .toggle
-            i.fa.fa-times.fa-pencil
-            .tooltip Click Me
-        .form
-            h2 Login to your account
-            form
-            input(type='text', placeholder='Username')
-            input(type='password', placeholder='Password')
-            button Login
-        .form
-            h2 Create an account
-            form
-            input(type='text', placeholder='Username')
-            input(type='password', placeholder='Password')
-            input(type='email', placeholder='Email Address')
-            input(type='tel', placeholder='Phone Number')
-            button Register
-    .footer.blue.darken-4
-      .footer-copyright
-        | © 2018 
+    .limiter
+        .container-login100
+            .wrap-login100.p-l-55.p-r-55.p-t-65.p-b-50
+                form.login100-form.validate-form
+                    span.login100-form-title.p-b-33
+                        | Account Login
+                    .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
+                        input.input100(type='text', name='email', placeholder='Email')
+                        span.focus-input100-1
+                        span.focus-input100-2
+                    .wrap-input100.rs1.validate-input.alert-validate(data-validate='Password is required')
+                        input.input100(type='password', name='pass', placeholder='Password')
+                        span.focus-input100-1
+                        span.focus-input100-2
+                    .container-login100-form-btn.m-t-20
+                        button.login100-form-btn
+                            | Sign in
+                    .text-center.p-t-45.p-b-4
+                        span.txt1
+                            | Forgot
+                        a.txt2.hov1(href='#')
+                            | Username / Password?
+                    .text-center
+                        span.txt1
+                            | Create an account?
+                        a.txt2.hov1(href='#')
+                            | Sign up
+
+
+
+
