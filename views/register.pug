@@ -5,9 +5,17 @@ block content
     .limiter
         .container-login100
             .wrap-login100.p-l-55.p-r-55.p-t-65.p-b-50
-                form.login100-form.validate-form
+                form.login100-form.validate-form(method='POST' action='/register')
                     span.login100-form-title.p-b-33
-                        | Hesap Girişi
+                        | Hesap Açılışı
+                    .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
+                        input.input100(type='text', name='ad', placeholder='Ad')
+                        span.focus-input100-1
+                        span.focus-input100-2
+                    .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
+                        input.input100(type='text', name='soyad', placeholder='Soyad')
+                        span.focus-input100-1
+                        span.focus-input100-2
                     .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
                         input.input100(type='text', name='email', placeholder='E-posta')
                         span.focus-input100-1
@@ -17,14 +25,14 @@ block content
                         span.focus-input100-1
                         span.focus-input100-2
                     .container-login100-form-btn.m-t-20
-                        button.login100-form-btn
-                            | Giriş
+                        button.login100-form-btn(type='submit')
+                            | Hesabı Oluştur
                     .text-center.p-t-45.p-b-4
                         a.txt2.hov1(href='#')
                             | Şifremi Unuttum
                     .text-center
-                        a.txt2.hov1(href='/register')
-                            | Yeni Hesap Aç
+                        a.txt2.hov1(href='/login')
+                            | Giriş
 
 
 

@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios')
-
+const axios = require('axios');
+const User = require('../models/user');
+var mid = require('../middleware');
 
 
 /* GET home page. */
@@ -163,4 +164,42 @@ router.get('/login', function (req, res, next) {
   res.render('login', {title: 'Money Tracker'})
 })
 
+router.get('/register', function (req, res, next) {
+  res.render('register', {title: 'Money Tracker'})
+})
+
+router.post('/register', function (req,res,next) {
+  if (req.body.ad && req.body.soyad && req.body.email && req.body.pass) {
+    var userData = {
+      name: req.body.ad,
+      lastName: req.body.soyad,
+      email: req.body.email,
+      password: req.body.pass
+    }
+    User.create(userData, function (error,user) {
+      if(error){
+        return next(error);
+      } else {
+        req.session.userId = user._id;
+        return res.redirect('/profile')
+      }
+    })
+  }
+  else {
+    var err = new Error('Tüm alanlar doldurulmalıdır');
+    err.status = 400;
+    return next(err)
+  }
+})
+
+router.get('/profile', mid.requiresLogin, function(req, res, next) {
+  User.findById(req.session.userId)
+      .exec(function (error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.render('profile', { title: 'Profile', name: user.name, lastName: user.lastName });
+        }
+      });
+});
 module.exports = router;
