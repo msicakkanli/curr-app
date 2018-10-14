@@ -159,9 +159,28 @@ router.get('/stockMarket', function(req,res,next){
       });
     }))
 })
-
+//user register and login routes
 router.get('/login', function (req, res, next) {
   res.render('login', {title: 'Money Tracker'})
+})
+
+router.post('/login', function (req,res,next) {
+  if (req.body.email && req.body.pass) {
+    User.authenticate(req.body.email , req.body.pass, function (error,user) {
+      if (error || !user) {
+        var err = new Error('Hatalı şifre veya kullanıcı adı!');
+        err.status = 401;
+        return next(err);
+      } else {
+        req.session.userId = user._id;
+        return res.redirect('/profile');
+      }
+    });
+  } else {
+    var err = new Error('E-posta ve şifre girişi zorunludur');
+    err.status = 401;
+    return next(err);
+  }
 })
 
 router.get('/register', function (req, res, next) {
