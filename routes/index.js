@@ -217,8 +217,25 @@ router.get('/profile', mid.requiresLogin, function(req, res, next) {
         if (error) {
           return next(error);
         } else {
-          return res.render('profile', { title: 'Profile', name: user.name, lastName: user.lastName });
+          var name = user.name;
+          var firstLetterName = name.charAt(0)
+          var lastName = user.lastName;
+          var firstLetterLastname = lastName.charAt(0)
+          return res.render('profile', { title: 'Profile', name: user.name, lastName: user.lastName, firstLetterName:firstLetterName, firstLetterLastname:firstLetterLastname });
         }
       });
 });
+
+//user logout
+router.get('/logout', function (req,res,next) {
+  if(req.session) {
+    req.session.destroy(function(err){
+      if(err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    })
+  }
+})
 module.exports = router;

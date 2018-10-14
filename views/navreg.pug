@@ -1,0 +1,25 @@
+nav.blue.darken-4.login-navbar
+    .nav-wrapper
+        a(href='/') Money Track
+        a.sidenav-trigger(href='#', data-target='mobile-demo')
+            i.material-icons menu
+        ul.right.hide-on-med-and-down
+            li
+                a(href='/profile') Kokpit
+            li
+                a(href='/dashboard') Piyasa
+            li
+                a(href='/transactions') Haraketler
+            li
+                a(href='/logout')  #{firstLetterName}.#{firstLetterLastname}. 
+                
+    ul#mobile-demo.sidenav
+        li
+            a(href='/profile') Kokpit
+        li
+            a(href='/dashboard') Piyasa
+        li
+            a(href='/transactions') Haraketler
+        li
+            a(href='/logout')  #{firstLetterName}.#{firstLetterLastname}. 
+           
