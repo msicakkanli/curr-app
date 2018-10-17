@@ -24,3 +24,21 @@ $(document).ready(function () {
 
 
 
+// Or with jQuery
+
+$(document).ready(function(){
+  $('select').formSelect();
+});
+
+
+// Or with jQuery
+
+$(document).ready(function(){
+  $('.datepicker').datepicker({
+    format : 'dd.mm.yyyy',
+    setDefaultDate : true,
+    
+  });
+});
+      
+

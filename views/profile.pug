@@ -1,7 +1,41 @@
 extends layout
 
 block content
-    include navreg.pug
+        include navreg.pug
+        .wrapper
+            .buySell
+                .row
+                    .s8.input-field
+                        input#test.datepicker(type='text')
+                        label(for='date') İşlem Tarihini Seçin
+                .row
+                    .input-field.col.s8
+                        select
+                            option(value='1') Alış
+                            option(value='2') Satış
+                        label İşlem Tipini Seçin
+                    .input-field.col.s8
+                        select
+                            optgroup(label='Döviz')
+                                option(value='1') Dolar
+                                option(value='2') Euro
+                                option(value='3') Pound
+                            optgroup(label='KriptoPara')
+                                option(value='4') Bitcoin
+                                option(value='6') Ripple
+                                option(value='7') Etherium
+                                option(value='8') LiteCoin
+                        label İşlem Aracı
+                .row
+                    .input-field.col.s8
+                        input#first_name2.validate(value='', type='text')
+                        label.active(for='totalAmount') Tutar Girin 
+                .row
+                    .input-field.col.s8
+                        input#disabled.validate(disabled='', value='', type='text')
+                        label(for='disabled') Toplam Tutar
+            .dashboard Dashboard
+            .transaction Transaction
 
 
 
