@@ -30,7 +30,6 @@ $(document).ready(function(){
   $('select').formSelect();
 });
 
-
 // Or with jQuery
 
 $(document).ready(function(){
@@ -39,6 +38,10 @@ $(document).ready(function(){
     setDefaultDate : true,
     
   });
+});
+
+$(document).ready(function() {
+  M.updateTextFields();
 });
       
 

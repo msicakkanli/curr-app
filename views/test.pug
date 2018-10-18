@@ -1,0 +1,230 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='msapplication-tap-highlight', content='no')
+    meta(name='description', content='')
+    title Home - Admin
+    link(href='https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css', rel='stylesheet')
+    link(href='stylesheets/jqvmap.css', rel='stylesheet')
+    link(href='stylesheets/flag-icon.min.css', rel='stylesheet')
+    // Fullcalendar
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css', rel='stylesheet')
+    // Materialize
+    link(href='stylesheets/admin-materialize.min.css', rel='stylesheet')
+    // Material Icons
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+  body.has-fixed-sidenav
+    header
+      .navbar-fixed
+        nav.navbar.white
+          .nav-wrapper
+            a.sidenav-trigger.left(href='#!', data-target='sidenav-left')
+              i.material-icons.black-text menu
+      ul#sidenav-left.sidenav.sidenav-fixed
+        li
+          a.logo-container(href='/')
+            | Money Tracker
+            i.material-icons.left attach_money
+        li.no-padding
+          ul.collapsible.collapsible-accordion
+            li.bold.waves-effect.active
+              a.collapsible-header
+                | Yatırım Araçları
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect.active(href='/')
+                      | Döviz
+                      i.material-icons money
+                  li
+                    a.waves-effect(href='/crypto')
+                      | KriptoPara
+                      i.material-icons timeline
+                  li
+                    a.waves-effect(href='/stockmarket')
+                      | Borsa & Altın
+                      i.material-icons swap_vert
+            li.bold.waves-effect
+              a.collapsible-header
+                | Hesap İşlemleri
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect(href='/login')
+                      | Giriş
+                      i.material-icons person
+                  li
+                    a.waves-effect(href='/register')
+                      | Kayıt Ol
+                      i.material-icons how_to_reg
+    main
+      .container
+        .masonry.row
+          .col.s12
+            h2 Döviz Bilgileri
+          .col.l3.m6.s12
+            if eurChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Amerikan Doları
+                                .card-metric-value #{usdBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{usdChange}
+                    .card-chart
+                        canvas#flush-area-chart-blue(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Amerikan Doları
+                                .card-metric-value #{usdBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{usdChange}
+                    .card-chart
+                        canvas#flush-area-chart-blue(height='100px')
+          .col.l3.m6.s12
+            if eurChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Euro
+                                .card-metric-value #{eurBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{eurChange}
+                    .card-chart
+                        canvas#flush-area-chart-yellow(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Euro
+                                .card-metric-value #{eurBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{eurChange}
+                    .card-chart
+                        canvas#flush-area-chart-yellow(height='100px')
+          .col.l3.m6.s12
+            if eurChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title İngiliz Sterlini
+                                .card-metric-value #{gbpBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{gbpChange}
+                    .card-chart
+                        canvas#flush-area-chart-green(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title İngiliz Sterlini
+                                .card-metric-value #{gbpBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{gbpChange}
+                    .card-chart
+                        canvas#flush-area-chart-green(height='100px')
+          .col.l3.m6.s12
+            .card
+              .card-stacked
+                .card-metrics.card-metrics-static
+                  .card-metric
+                    .card-metric-title EUR / USD
+                    .card-metric-value #{eurUsd}
+                    .card-metric-change.decrease
+                      i.material-icons.left keyboard_arrow_down
+                      |                 9%
+              .card-chart
+                canvas#flush-area-chart-red(height='100')
+          .col.s12
+            .card
+              .card-metrics.card-metrics-toggle.card-metrics-centered
+                .card-metric.waves-effect.active(data-metric='revenue')
+                  .card-metric-title Revenue
+                  .card-metric-value $12,476.00
+                  .card-metric-change
+                    i.material-icons keyboard_arrow_up
+                    |               12%
+                .card-metric.waves-effect(data-metric='users')
+                  .card-metric-title Users
+                  .card-metric-value 2024
+                  .card-metric-change
+                    i.material-icons keyboard_arrow_up
+                    |               9%
+                .card-metric.waves-effect(data-metric='ctr')
+                  .card-metric-title CTR
+                  .card-metric-value 0.20%
+                  .card-metric-change
+                    i.material-icons keyboard_arrow_up
+                    |               4%
+              .card-content
+                canvas#main-toggle-line-chart.card-chart(width='400', height='400')
+
+    footer.page-footer
+      .container
+        .row
+          .col.s6.m3
+            h5 About
+            ul
+              li
+                a(href='#!') Blog
+              li
+                a(href='#!') Pricing
+              li
+                a(href='#!') Docs
+          .col.s6.m3
+            h5 Connect
+            ul
+              li
+                a(href='#!') Community
+              li
+                a(href='#!') Subscribe
+              li
+                a(href='#!') Email
+          .col.s6.m3
+            h5 Contact
+            ul
+              li
+                a(href='#!') Twitter
+              li
+                a(href='#!') Facebook
+              li
+                a(href='#!') Github
+    // Scripts
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script(src='/javascripts/materialize.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js')
+    // External libraries
+    // jqvmap
+    script(type='text/javascript', src='/javascripts/jquery.vmap.min.js')
+    script(type='text/javascript', src='/javascripts/jquery.vmap.world.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/jquery.vmap.sampledata.js')
+    // ChartJS
+    script(type='text/javascript', src='/javascripts/Chart.js')
+    script(type='text/javascript', src='/javascripts/Chart.Financial.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js')
+    script(src='/javascripts/imagesloaded.pkgd.min.js')
+    script(src='/javascripts/masonry.pkgd.min.js')
+    // Initialization script
+    script(src='/javascripts/admin.js')
+    script(src='/javascripts/dashboard.js')
+    script(src='/javascripts/init.js')
