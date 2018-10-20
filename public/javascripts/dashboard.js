@@ -7,10 +7,18 @@
       datasets: [{
         backgroundColor: chartColorBlue,
         borderColor: chartColorBlue,
-        data: [2,4,7,3,8],
+        data: [5,6,3,3,9],
         label: 'Number'
       }]
     };
+    $.get('http://localhost:3000/dailyUsd', function (data) {
+     
+      data.forEach(element => {
+        blueData.datasets[0].data.push(element.selling)
+      });
+     
+    })
+    console.log(blueData.datasets[0].data)
     var $flushAreaChartBlue = $('#flush-area-chart-blue');
     var flushAreaChartBlue = new Chart($flushAreaChartBlue, {
       type: 'line',

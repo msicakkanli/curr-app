@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const User = require('../models/user');
+const moment =  require('moment');
 var mid = require('../middleware');
 
 
@@ -276,9 +277,24 @@ router.get('/test', function (req, res, next) {
       let eurChange =  Math.round(eurs.change_rate * 100) / 100
       let gbpBuy = Math.round(gbps.selling * 100) / 100
       let gbpChange =  Math.round(gbps.change_rate * 100) / 100
-      let usdEur = Math.round ((usdBuy / eurBuy) * 100) / 100
+      let gbpUsd = Math.round ((gbpBuy / usdBuy) * 100) / 100
       let eurUsd = Math.round ((eurBuy / usdBuy) * 100) / 100
-      res.render('test', { title: 'Money Tracker', usdBuy: usdBuy, usdChange: usdChange ,eurBuy: eurBuy, eurChange: eurChange, gbpBuy: gbpBuy, gbpChange: gbpChange , alls:alls , eurUsd:eurUsd, usdEur:usdEur });
+      res.render('test', { title: 'Money Tracker', usdBuy: usdBuy, usdChange: usdChange ,eurBuy: eurBuy, eurChange: eurChange, gbpBuy: gbpBuy, gbpChange: gbpChange , alls:alls , eurUsd:eurUsd, gbpUsd:gbpUsd});
     }))
 });
+
+router.get('/dailyUSD', function (req,res,next) {
+  function dailyUsd() {
+    var end = moment().subtract(1, 'days').format('YYYY-MM-DD')
+    var start = moment().subtract(7, 'days').format('YYYY-MM-DD')
+    let dailyApi = ' https://doviz.com/api/v1/currencies/USD/archive?start='+start+'-16&end='+end
+     return axios.get(dailyApi)
+   }
+   axios.all([dailyUsd()])
+    .then(axios.spread(function(usd){
+      let dailyUSD = usd.data
+      res.json(dailyUSD)
+    }))
+ 
+})
 module.exports = router;

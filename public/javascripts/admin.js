@@ -934,8 +934,9 @@ var tabLegendCallback = function(chart) {
     /********************
      *    DataTables    *
      ********************/
-    var table = $('#default-table-example').DataTable({
-      'ajax': 'https://api.myjson.com/bins/1us28',
+    var table = $('#default-table-example').DataTable(
+      {
+      'ajax': 'http://www.doviz.com/api/v1/currencies/all/latest',
       'language': {
         'search': '',
         'searchPlaceholder': 'Enter search term'

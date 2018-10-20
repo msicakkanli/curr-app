@@ -149,34 +149,31 @@ html(lang='en')
                   .card-metric
                     .card-metric-title EUR / USD
                     .card-metric-value #{eurUsd}
-                    .card-metric-change.decrease
-                      i.material-icons.left keyboard_arrow_down
-                      |                 9%
+                    .card-metric-title GBP / USD #{gbpUsd}
               .card-chart
-                canvas#flush-area-chart-red(height='100')
-          .col.s12
+                canvas#flush-area-chart-pink(height='100')
+        .col.s12
+            h2.section-title 
             .card
-              .card-metrics.card-metrics-toggle.card-metrics-centered
-                .card-metric.waves-effect.active(data-metric='revenue')
-                  .card-metric-title Revenue
-                  .card-metric-value $12,476.00
-                  .card-metric-change
-                    i.material-icons keyboard_arrow_up
-                    |               12%
-                .card-metric.waves-effect(data-metric='users')
-                  .card-metric-title Users
-                  .card-metric-value 2024
-                  .card-metric-change
-                    i.material-icons keyboard_arrow_up
-                    |               9%
-                .card-metric.waves-effect(data-metric='ctr')
-                  .card-metric-title CTR
-                  .card-metric-value 0.20%
-                  .card-metric-change
-                    i.material-icons keyboard_arrow_up
-                    |               4%
-              .card-content
-                canvas#main-toggle-line-chart.card-chart(width='400', height='400')
+                table#table-custom-elements.row-border(cellspacing='0', width='100%')
+                    thead
+                        tr
+                            th
+                            th Adı
+                            th Kodu
+                            th Satış
+                            th Değişim %
+                        tbody
+                            each all in alls
+                                tr
+                                    td
+                                    td= all.full_name
+                                    td= all.code
+                                    td= all.selling
+                                    td= all.change_rate
+                    
+                        
+
 
     footer.page-footer
       .container
@@ -227,4 +224,5 @@ html(lang='en')
     // Initialization script
     script(src='/javascripts/admin.js')
     script(src='/javascripts/dashboard.js')
+    script(src='/javascripts/table-custom-elements.js')
     script(src='/javascripts/init.js')
