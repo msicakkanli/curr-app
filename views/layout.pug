@@ -1,23 +1,41 @@
 doctype html
 html(lang='en')
   head
-    // Required meta tags
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-    link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel="stylesheet")
-    link(href='https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css')
-    link(href='https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css')
-    link(href='stylesheets/page.css', rel='stylesheet')
-    link(href='stylesheets/style.css', rel='stylesheet')
-
-    title Budget Tracker
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='msapplication-tap-highlight', content='no')
+    meta(name='description', content='')
+    title Home - Admin
+    link(href='https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css', rel='stylesheet')
+    link(href='stylesheets/jqvmap.css', rel='stylesheet')
+    link(href='stylesheets/flag-icon.min.css', rel='stylesheet')
+    // Fullcalendar
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css', rel='stylesheet')
+    // Materialize
+    link(href='stylesheets/admin-materialize.min.css', rel='stylesheet')
+    // Material Icons
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
   body
     block content
-    script(src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous')
-    script(src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
-    script(src='https://cdn.datatables.net/1.10.19/js/dataTables.material.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')
-    script(src='/javascripts/nav.js')
+    // Scripts
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script(src='/javascripts/materialize.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js')
+    // External libraries
+    // jqvmap
+    script(type='text/javascript', src='/javascripts/jquery.vmap.min.js')
+    script(type='text/javascript', src='/javascripts/jquery.vmap.world.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/jquery.vmap.sampledata.js')
+    // ChartJS
+    script(type='text/javascript', src='/javascripts/Chart.js')
+    script(type='text/javascript', src='/javascripts/Chart.Financial.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js')
+    script(src='/javascripts/imagesloaded.pkgd.min.js')
+    script(src='/javascripts/masonry.pkgd.min.js')
+    // Initialization script
+    script(src='/javascripts/admin.js')
+    script(src='/javascripts/dashboard.js')
+    script(src='/javascripts/table-custom-elements.js')
+    script(src='/javascripts/init.js')    

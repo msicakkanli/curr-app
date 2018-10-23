@@ -1,75 +1,193 @@
 extends layout
 
 block content
-  .container
-    include navbar.pug
-    .main
-      .card1
-            .card.pink.lighten-2
-              .card-content.white-text
-                span.card-title BIST 100
-                p
-                  | Index : #{x100s.latest}
-                  | 1. Seans Kapanış : #{x100s.first_seance_closing} 
-                  | 2. Seans Kapanış : #{x100s.first_seance_closing}
-                  | % #{x100Change}
-                if x100Change > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-      .card2
-            .card.indigo.darken-1
-              .card-content.white-text
-                span.card-title BIST 50
-                p
-                  | Index : #{x50s.latest}
-                  | 1. Seans Kapanış : #{x50s.first_seance_closing} 
-                  | 2. Seans Kapanış : #{x50s.first_seance_closing}
-                  | % #{x50Change}
-                if x50Change > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-      .card3
-            .card.cyan
-              .card-content.white-text
-                span.card-title BIST 30
-                p
-                  | Index : #{x30s.latest}
-                  | 1. Seans Kapanış : #{x30s.first_seance_closing} 
-                  | 2. Seans Kapanış : #{x30s.first_seance_closing}
-                  | % #{x30Change}
-                if x30Change > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-    //-   .card4
-    //-         .card.cyan
-    //-           .card-content.lime.lighten-1
-    //-             span.card-title LiteCoin
-    //-             p
-    //-               | Alış : #{ltcBuy}
-    //-               | Volume : #{ltcVolume}
-    //-               | % #{ltcChange}
-    //-             if ltcChange > 0 
-    //-               i.material-icons arrow_drop_up
-    //-             else 
-    //-               i.material-icons arrow_drop_down
-    .tablo
-      .tablo1
-        table#currency.striped.blue-grey.lighten-1.mdl-data-table
-          thead
-            tr
-              th Adı
-              th Satış
-              th Değişim %
-          tbody
-            each gold in golds
-              tr
-                td= gold.full_name
-                td= gold.selling
-                td= gold.change_rate
 
-    .footer.blue.darken-4
-      .footer-copyright
-        | © 2018 
+  body.has-fixed-sidenav
+    header
+      .navbar-fixed
+        nav.navbar.white
+          .nav-wrapper
+            a.sidenav-trigger.left(href='#!', data-target='sidenav-left')
+              i.material-icons.black-text menu
+      ul#sidenav-left.sidenav.sidenav-fixed
+        li
+          a.logo-container(href='/')
+            | Money Tracker
+            i.material-icons.left attach_money
+        li.no-padding
+          ul.collapsible.collapsible-accordion
+            li.bold.waves-effect.active
+              a.collapsible-header
+                | Yatırım Araçları
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect.active(href='/')
+                      | Döviz
+                      i.material-icons money
+                  li
+                    a.waves-effect(href='/crypto')
+                      | KriptoPara
+                      i.material-icons timeline
+                  li
+                    a.waves-effect(href='/stockmarket')
+                      | Borsa & Altın
+                      i.material-icons swap_vert
+            li.bold.waves-effect
+              a.collapsible-header
+                | Hesap İşlemleri
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect(href='/login')
+                      | Giriş
+                      i.material-icons person
+                  li
+                    a.waves-effect(href='/register')
+                      | Kayıt Ol
+                      i.material-icons how_to_reg
+    main
+      .container
+        .masonry.row
+          .col.s12
+            h2 Borsa & Altın Bilgileri
+          .col.l3.m6.s12
+            if x100Change > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title BIST 1000
+                                .card-metric-value #{x100s.first_seance_closing}
+                                .card-metric-value #{x100s.latest}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{x100Change}
+                    .card-chart
+                        canvas#flush-area-chart-blue(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title BIST 100
+                                .card-metric-value #{x100s.first_seance_closing}
+                                .card-metric-value #{x100s.latest}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{x100Change}
+                    .card-chart
+                        canvas#flush-area-chart-blue(height='100px')
+          .col.l3.m6.s12
+            if X50Change > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title BIST 50
+                                .card-metric-value #{x50s.first_seance_closing}
+                                .card-metric-value #{x50s.latest}                                
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{x50Change}
+                    .card-chart
+                        canvas#flush-area-chart-yellow(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title BIST 50
+                                .card-metric-value #{x50s.first_seance_closing}
+                                .card-metric-value #{x50s.latest}                                 
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{x50Change}
+                    .card-chart
+                        canvas#flush-area-chart-yellow(height='100px')
+          .col.l3.m6.s12
+            if x30Change > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title BIST 30
+                                .card-metric-value #{x50s.first_seance_closing}
+                                .card-metric-value #{x50s.latest}                                
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{x30Change}
+                    .card-chart
+                        canvas#flush-area-chart-green(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title BIST 30
+                                .card-metric-value #{x50s.first_seance_closing}
+                                .card-metric-value #{x50s.latest}                                
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{x30Change}
+                    .card-chart
+                        canvas#flush-area-chart-green(height='100px')
+          //- .col.l3.m6.s12
+          //-   .card
+          //-     .card-stacked
+          //-       .card-metrics.card-metrics-static
+          //-         .card-metric
+          //-           .card-metric-title EUR / USD
+          //-           .card-metric-value #{eurUsd}
+          //-           .card-metric-title GBP / USD #{gbpUsd}
+          //-     .card-chart
+          //-       canvas#flush-area-chart-pink(height='100')
+        .col.s12
+            h2.section-title 
+            .card
+                table#table-custom-elements.row-border(cellspacing='0', width='100%')
+                    thead
+                        tr
+                            th
+                            th Adı
+                            th Satış
+                            th Değişim %
+                        tbody
+                            each gold in golds
+                                tr
+                                    td
+                                    td= gold.full_name
+                                    td= gold.selling
+                                    td= gold.change_rate
+    footer.page-footer
+      .container
+        .row
+          .col.s6.m3
+            h5 About
+            ul
+              li
+                a(href='#!') Blog
+              li
+                a(href='#!') Pricing
+              li
+                a(href='#!') Docs
+          .col.s6.m3
+            h5 Connect
+            ul
+              li
+                a(href='#!') Community
+              li
+                a(href='#!') Subscribe
+              li
+                a(href='#!') Email
+          .col.s6.m3
+            h5 Contact
+            ul
+              li
+                a(href='#!') Twitter
+              li
+                a(href='#!') Facebook
+              li
+                a(href='#!') Github        

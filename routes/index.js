@@ -43,7 +43,9 @@ router.get('/', function (req, res, next) {
       let eurChange =  Math.round(eurs.change_rate * 100) / 100
       let gbpBuy = Math.round(gbps.selling * 100) / 100
       let gbpChange =  Math.round(gbps.change_rate * 100) / 100
-      res.render('index', { title: 'Money Tracker', usdBuy: usdBuy, usdChange: usdChange ,eurBuy: eurBuy, eurChange: eurChange, gbpBuy: gbpBuy, gbpChange: gbpChange , alls:alls });
+      let gbpUsd = Math.round ((gbpBuy / usdBuy) * 100) / 100
+      let eurUsd = Math.round ((eurBuy / usdBuy) * 100) / 100
+      res.render('test', { title: 'Money Tracker', usdBuy: usdBuy, usdChange: usdChange ,eurBuy: eurBuy, eurChange: eurChange, gbpBuy: gbpBuy, gbpChange: gbpChange , alls:alls , eurUsd:eurUsd, gbpUsd:gbpUsd});
     }))
 });
 

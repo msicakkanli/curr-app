@@ -1,75 +1,206 @@
 extends layout
 
+ 
 block content
-  .container
-    include navbar.pug
-    .main
-      .card1
-            .card.pink.lighten-2
-              .card-content.white-text
-                span.card-title Bitcoin
-                p
-                  | Alış : #{btcBuy}  
-                  | Volume : #{btcVolume}
-                  | % #{btcChange}
-                if btcChange > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-      .card2
-            .card.indigo.darken-1
-              .card-content.white-text
-                span.card-title Ripple
-                p
-                  | Alış : #{xrpBuy}
-                  | Volume : #{xrpVolume}
-                  | % #{xrpChange}
-                if xrpChange > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-      .card3
-            .card.cyan
-              .card-content.white-text
-                span.card-title Etherium
-                p
-                  | Alış : #{ethBuy}
-                  | Volume : #{ethVolume}
-                  | % #{ethChange}
-                if ethChange > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-      .card4
-            .card.cyan
-              .card-content.lime.lighten-1
-                span.card-title LiteCoin
-                p
-                  | Alış : #{ltcBuy}
-                  | Volume : #{ltcVolume}
-                  | % #{ltcChange}
-                if ltcChange > 0 
-                  i.material-icons arrow_drop_up
-                else 
-                  i.material-icons arrow_drop_down
-    .tablo
-      .tablo1
-        table#currency.striped.blue-grey.lighten-1.mdl-data-table
-          thead
-            tr
-              th Adı
-              th Kodu
-              th Satış
-              th Değişim %
-              th Volume
-          tbody
-            each all in alls
-              tr
-                td= all.full_name
-                td= all.symbol
-                td= all.selling
-                td= all.change_rate
-                td= all.market_cap
-    .footer.blue.darken-4
-      .footer-copyright
-        | © 2018 
+
+  body.has-fixed-sidenav
+    header
+      .navbar-fixed
+        nav.navbar.white
+          .nav-wrapper
+            a.sidenav-trigger.left(href='#!', data-target='sidenav-left')
+              i.material-icons.black-text menu
+      ul#sidenav-left.sidenav.sidenav-fixed
+        li
+          a.logo-container(href='/')
+            | Money Tracker
+            i.material-icons.left attach_money
+        li.no-padding
+          ul.collapsible.collapsible-accordion
+            li.bold.waves-effect.active
+              a.collapsible-header
+                | Yatırım Araçları
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect.active(href='/')
+                      | Döviz
+                      i.material-icons money
+                  li
+                    a.waves-effect(href='/crypto')
+                      | KriptoPara
+                      i.material-icons timeline
+                  li
+                    a.waves-effect(href='/stockmarket')
+                      | Borsa & Altın
+                      i.material-icons swap_vert
+            li.bold.waves-effect
+              a.collapsible-header
+                | Hesap İşlemleri
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect(href='/login')
+                      | Giriş
+                      i.material-icons person
+                  li
+                    a.waves-effect(href='/register')
+                      | Kayıt Ol
+                      i.material-icons how_to_reg
+    main
+      .container
+        .masonry.row
+          .col.s12
+            h2 KriptoPara Borsası
+          .col.l3.m6.s12
+            if btcChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Bitcoin
+                                .card-metric-value #{btcBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{btcChange}
+                    .card-chart
+                        canvas#flush-area-chart-blue(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Bitcoin
+                                .card-metric-value #{btcBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{btcChange}
+                    .card-chart
+                        canvas#flush-area-chart-blue(height='100px')
+          .col.l3.m6.s12
+            if xrpChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Ripple
+                                .card-metric-value #{xrpBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{xrpChange}
+                    
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Ripple
+                                .card-metric-value #{xrpBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{xrpChange}
+                    .card-chart
+                        canvas#flush-area-chart-yellow(height='100px')
+          .col.l3.m6.s12
+            if ethChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Etherium
+                                .card-metric-value #{ethBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{ethChange}
+                    .card-chart
+                        canvas#flush-area-chart-green(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title Etherium
+                                .card-metric-value #{ethBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{ethChange}
+                    .card-chart
+                        canvas#flush-area-chart-green(height='100px')
+          .col.l3.m6.s12
+            if ltcChange > 0
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title LiteCoin
+                                .card-metric-value #{ltcBuy}
+                                .card-metric-change.increase
+                                    i.material-icons.left keyboard_arrow_up
+                                    |                 #{ltcChange}
+                    .card-chart
+                        canvas#flush-area-chart-pink(height='100px')
+            else
+                .card
+                    .card-stacked
+                        .card-metrics.card-metrics-static
+                            .card-metric
+                                .card-metric-title LiteCoin
+                                .card-metric-value #{ltcBuy}
+                                .card-metric-change.decrease
+                                    i.material-icons.left keyboard_arrow_down
+                                    |                 #{ltcChange}
+                    .card-chart
+                        canvas#flush-area-chart-pink(height='100px')
+        .col.s12
+            h2.section-title 
+            .card
+                table#table-custom-elements.row-border(cellspacing='0', width='100%')
+                    thead
+                        tr
+                            th
+                            th Adı
+                            th Kodu
+                            th Satış
+                            th Değişim %
+                            th Volume
+                        tbody
+                            each all in alls
+                                tr
+                                    td
+                                    td= all.full_name
+                                    td= all.symbol
+                                    td= all.selling
+                                    td= all.change_rate
+                                    td= all.market_cap
+    footer.page-footer
+      .container
+        .row
+          .col.s6.m3
+            h5 About
+            ul
+              li
+                a(href='#!') Blog
+              li
+                a(href='#!') Pricing
+              li
+                a(href='#!') Docs
+          .col.s6.m3
+            h5 Connect
+            ul
+              li
+                a(href='#!') Community
+              li
+                a(href='#!') Subscribe
+              li
+                a(href='#!') Email
+          .col.s6.m3
+            h5 Contact
+            ul
+              li
+                a(href='#!') Twitter
+              li
+                a(href='#!') Facebook
+              li
+                a(href='#!') Github
