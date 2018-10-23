@@ -296,7 +296,7 @@ router.get('/dailyUSD', function (req,res,next) {
     .then(axios.spread(function(usd){
       let dailyUSD = usd.data
       res.json(dailyUSD)
-    }))
- 
+    })) 
 })
+
 module.exports = router;

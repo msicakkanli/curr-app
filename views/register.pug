@@ -1,38 +1,114 @@
 extends layout
 
 block content
-    include navlogin.pug
-    .limiter
-        .container-login100
-            .wrap-login100.p-l-55.p-r-55.p-t-65.p-b-50
-                form.login100-form.validate-form(method='POST' action='/register')
-                    span.login100-form-title.p-b-33
-                        | Hesap Açılışı
-                    .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
-                        input.input100(type='text', name='ad', placeholder='Ad')
-                        span.focus-input100-1
-                        span.focus-input100-2
-                    .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
-                        input.input100(type='text', name='soyad', placeholder='Soyad')
-                        span.focus-input100-1
-                        span.focus-input100-2
-                    .wrap-input100.validate-input.alert-validate(data-validate='Valid email is required: ex@abc.xyz')
-                        input.input100(type='text', name='email', placeholder='E-posta')
-                        span.focus-input100-1
-                        span.focus-input100-2
-                    .wrap-input100.rs1.validate-input.alert-validate(data-validate='Password is required')
-                        input.input100(type='password', name='pass', placeholder='Şifre')
-                        span.focus-input100-1
-                        span.focus-input100-2
-                    .container-login100-form-btn.m-t-20
-                        button.login100-form-btn(type='submit')
-                            | Hesabı Oluştur
-                    .text-center.p-t-45.p-b-4
-                        a.txt2.hov1(href='#')
-                            | Şifremi Unuttum
-                    .text-center
-                        a.txt2.hov1(href='/login')
-                            | Giriş
+  body.has-fixed-sidenav
+    header
+      .navbar-fixed
+        nav.navbar.white
+          .nav-wrapper
+            a.sidenav-trigger.left(href='#!', data-target='sidenav-left')
+              i.material-icons.black-text menu
+      ul#sidenav-left.sidenav.sidenav-fixed
+        li
+          a.logo-container(href='/')
+            | Money Tracker
+            i.material-icons.left attach_money
+        li.no-padding
+          ul.collapsible.collapsible-accordion
+            li.bold.waves-effect.active
+              a.collapsible-header
+                | Yatırım Araçları
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect.active(href='/')
+                      | Döviz
+                      i.material-icons money
+                  li
+                    a.waves-effect(href='/crypto')
+                      | KriptoPara
+                      i.material-icons timeline
+                  li
+                    a.waves-effect(href='/stockmarket')
+                      | Borsa & Altın
+                      i.material-icons swap_vert
+            li.bold.waves-effect
+              a.collapsible-header
+                | Hesap İşlemleri
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect(href='/login')
+                      | Giriş
+                      i.material-icons person
+                  li
+                    a.waves-effect(href='/register')
+                      | Kayıt Ol
+                      i.material-icons how_to_reg
+    main
+      .container
+        .row
+          .col.s8.offset-s2
+            .card.card-login
+              .card-content
+                span.card-title Hesap Açılışı
+                form(method='POST' action='/register')
+                    .input-field
+                        input#username.validate(type='text', name='ad')
+                        label(for='ad') Ad
+                    .input-field
+                        input#username.validate(type='text', name='soyad')
+                        label(for='soyad') Soyad                        
+                    .input-field
+                        input#username.validate(type='text', name='email')
+                        label(for='username') E-posta
+                    .input-field
+                        input#password.validate(type='password', name='pass')
+                        label(for='password') Şifre
+                    br
+                    br
+                    div
+                        input.btn.right(type='submit', value='Hesabı Oluştur')
+                        a.btn-flat(href='#!') 
+    footer.page-footer
+      .container
+        .row
+          .col.s6.m3
+            h5 About
+            ul
+              li
+                a(href='#!') Blog
+              li
+                a(href='#!') Pricing
+              li
+                a(href='#!') Docs
+          .col.s6.m3
+            h5 Connect
+            ul
+              li
+                a(href='#!') Community
+              li
+                a(href='#!') Subscribe
+              li
+                a(href='#!') Email
+          .col.s6.m3
+            h5 Contact
+            ul
+              li
+                a(href='#!') Twitter
+              li
+                a(href='#!') Facebook
+              li
+                a(href='#!') Github
+    
+
+
+
+
+
+
 
 
 
