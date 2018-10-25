@@ -229,6 +229,21 @@ router.get('/profile', mid.requiresLogin, function(req, res, next) {
       });
 });
 
+router.get('/newTrans', mid.requiresLogin, function(req, res, next) {
+  User.findById(req.session.userId)
+      .exec(function (error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          var name = user.name;
+          var firstLetterName = name.charAt(0)
+          var lastName = user.lastName;
+          var firstLetterLastname = lastName.charAt(0)
+          return res.render('newTrans', { title: 'Profile', name: user.name, lastName: user.lastName, firstLetterName:firstLetterName, firstLetterLastname:firstLetterLastname });
+        }
+      });
+});
+
 //user logout
 router.get('/logout', function (req,res,next) {
   if(req.session) {
@@ -242,48 +257,6 @@ router.get('/logout', function (req,res,next) {
   }
 })
 
-router.get('/test', function (req, res, next) {
-  function getUsd() {
-   let currencyApi = 'http://www.doviz.com/api/v1/currencies/USD/latest'
-    return axios.get(currencyApi)
-  }
-  function getEur() {
-    let currencyApi = 'http://www.doviz.com/api/v1/currencies/EUR/latest'
-    return axios.get(currencyApi)
-  }
-  function getGbp() {
-    let currencyApi = 'http://www.doviz.com/api/v1/currencies/GBP/latest'
-    return axios.get(currencyApi)
-  }
-  function getAll() {
-    let allApi = 'http://www.doviz.com/api/v1/currencies/all/latest'
-    return axios.get(allApi)
-  }
-  axios.all([getUsd(), getEur(), getGbp(), getAll()])
-    .then(axios.spread(function (usd, eur, gbp , all) {
-      let alls = all.data
-      alls.forEach(function(item){
-       var newSellig = Math.round(item.selling * 100) / 100
-       var newChange = Math.round(item.change_rate * 100) / 100
-       item.selling = newSellig
-       item.change_rate = newChange
-      });
-
-
-      let usds = usd.data
-      let eurs = eur.data
-      let gbps = gbp.data
-      let usdBuy = Math.round(usds.selling * 100) / 100
-      let usdChange =  Math.round(usds.change_rate * 100) / 100
-      let eurBuy = Math.round(eurs.selling * 100) / 100
-      let eurChange =  Math.round(eurs.change_rate * 100) / 100
-      let gbpBuy = Math.round(gbps.selling * 100) / 100
-      let gbpChange =  Math.round(gbps.change_rate * 100) / 100
-      let gbpUsd = Math.round ((gbpBuy / usdBuy) * 100) / 100
-      let eurUsd = Math.round ((eurBuy / usdBuy) * 100) / 100
-      res.render('test', { title: 'Money Tracker', usdBuy: usdBuy, usdChange: usdChange ,eurBuy: eurBuy, eurChange: eurChange, gbpBuy: gbpBuy, gbpChange: gbpChange , alls:alls , eurUsd:eurUsd, gbpUsd:gbpUsd});
-    }))
-});
 
 router.get('/dailyUSD', function (req,res,next) {
   function dailyUsd() {

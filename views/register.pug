@@ -50,16 +50,16 @@ block content
     main
       .container
         .row
-          .col.s8.offset-s2
+          .col.s10.offset-s1
             .card.card-login
               .card-content
                 span.card-title Hesap Açılışı
                 form(method='POST' action='/register')
                     .input-field
-                        input#username.validate(type='text', name='ad')
+                        input#name.validate(type='text', name='ad')
                         label(for='ad') Ad
                     .input-field
-                        input#username.validate(type='text', name='soyad')
+                        input#lastname.validate(type='text', name='soyad')
                         label(for='soyad') Soyad                        
                     .input-field
                         input#username.validate(type='text', name='email')

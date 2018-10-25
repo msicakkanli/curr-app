@@ -1,0 +1,172 @@
+extends layout
+
+block content
+
+  body.has-fixed-sidenav
+    header
+      .navbar-fixed
+        nav.navbar.white
+          .nav-wrapper
+            a.sidenav-trigger.left(href='#!', data-target='sidenav-left')
+              i.material-icons.black-text menu
+      ul#sidenav-left.sidenav.sidenav-fixed
+        li
+          a.logo-container(href='/')
+            | Money Tracker
+            i.material-icons.left attach_money
+        li.no-padding
+          ul.collapsible.collapsible-accordion
+            li.bold.waves-effect.active
+              a.collapsible-header
+                | İşlemler
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect.active(href='/profile')
+                      | Kokpit
+                      i.material-icons dashboard
+                  li
+                    a.waves-effect(href='/newTrans')
+                      | Yeni İşlem 
+                      i.material-icons loop
+                  li
+                    a.waves-effect(href='/historys')
+                      | İşlem Geçmişi 
+                      i.material-icons assignment
+            li.bold.waves-effect
+              a.collapsible-header
+                | Hesap Ayarları 
+                i.material-icons.chevron chevron_left
+              .collapsible-body
+                ul
+                  li
+                    a.waves-effect(href='/setting')
+                      | Ayarlar 
+                      i.material-icons settings_applications
+                  li
+                    a.waves-effect(href='/logout')
+                      | Çıkış
+                      i.material-icons exit_to_app
+    main
+        .section.container
+            .col.s12.m8
+                .settings-group
+                    ul.collapsible.setting
+                        li
+                            .collapsible-header(tabindex='0')
+                                span Mevcut Bakiye
+                                | 10.000 TL
+                            .collapsible-body(style='')
+                                span Yatırım Dağılımı
+                                ul
+                                    li 5.000 USD
+                                    li 0.5 BTC
+                        li
+                            .collapsible-header(tabindex='0')
+                                span Yeni İşlem
+                                i.material-icons.caret.right keyboard_arrow_right
+                            .collapsible-body(style='')
+                                .row
+                                    form
+                                        .row
+                                            .input-field.col.s12
+                                                input#address.validate(type='text')
+                                                label(for='transactionName') İşlem Adı 
+                                            .input-field.col.s12
+                                                input.datepicker(type='text')
+                                                label(for='transactionDate') İşlem Tarihi 
+                                            .input-field.col.s12
+                                                select
+                                                    option(value='1') Alış
+                                                    option(value='2') Satış
+                                                label İşlem Tip
+                                            .input-field.col.s12
+                                                select
+                                                    optgroup(label='Döviz')
+                                                        option(value='1') Amerikan Doları
+                                                        option(value='2') Euro
+                                                        option(value='3') Sterlin
+                                                    optgroup(label='KriptoPara')
+                                                        option(value='4') Bitcoin
+                                                        option(value='5') Ripple
+                                                        option(value='6') Etherium
+                                                        option(value='7') LiteCoin
+                                                label Yatırım Aracı
+                                        .row        
+                                            .input-field.col.s6
+                                                input#zip.validate(type='text')
+                                                label(for='transactionAmount') İşlem Tutarı
+                                            .input-field.col.s6
+                                                select
+                                                    optgroup(label='Döviz')
+                                                        option(value='1') Türk Lirası
+                                                        option(value='2') Amerikan Doları
+                                                        option(value='3') Euro
+                                                        option(value='4') Sterlin
+                                                    optgroup(label='KriptoPara')
+                                                        option(value='5') Bitcoin
+                                                        option(value='6') Ripple
+                                                        option(value='7') Etherium
+                                                        option(value='8') LiteCoin
+                                                label İşlem Dövizi
+                                        .row
+                                            .input-field.col.s12
+                                                input.datepicker(type='text')
+                                                label(for='finalAmount') Yatırım Tutarı
+                                        div
+                                            input.btn.right(type='submit', value='Kaydet')
+                                            a.btn-flat(href='#!')
+
+
+                        li
+                            .collapsible-header(tabindex='0')
+                                span İşlem Geçmişi
+                                i.material-icons.caret.right keyboard_arrow_right
+                            .collapsible-body(style='')
+                                span Yatırım Dağılımı
+                                ul
+                                    li 5.000 USD
+                                    li 0.5 BTC
+
+
+     
+    footer.page-footer
+      .container
+        .row
+          .col.s6.m3
+            h5 About
+            ul
+              li
+                a(href='#!') Blog
+              li
+                a(href='#!') Pricing
+              li
+                a(href='#!') Docs
+          .col.s6.m3
+            h5 Connect
+            ul
+              li
+                a(href='#!') Community
+              li
+                a(href='#!') Subscribe
+              li
+                a(href='#!') Email
+          .col.s6.m3
+            h5 Contact
+            ul
+              li
+                a(href='#!') Twitter
+              li
+                a(href='#!') Facebook
+              li
+                a(href='#!') Github
+
+
+
+
+
+
+
+
+
