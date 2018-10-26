@@ -272,4 +272,21 @@ router.get('/dailyUSD', function (req,res,next) {
     })) 
 })
 
+router.get('/lastRate', function (req,res,next) {
+  function lastRate() {
+    let lastApi = 'http://www.doviz.com/api/v1/currencies/USD/latest'
+    return axios.get(lastApi)
+  }
+  axios.all([lastRate()])
+    .then(axios.spread(function (usd) {
+      let lastUsd = usd.data
+      res.json(lastUsd)
+    }))
+})
+
+router.post('/newTrans', function(req,res,next){
+   
+  console.log(req.body)
+  res.json(req.body)
+})
 module.exports = router;

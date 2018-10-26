@@ -68,21 +68,21 @@ block content
                                 i.material-icons.caret.right keyboard_arrow_right
                             .collapsible-body(style='')
                                 .row
-                                    form
+                                    form(method='POST' action='/newTrans')
                                         .row
                                             .input-field.col.s12
-                                                input#address.validate(type='text')
+                                                input#transactionName.validate(type='text', name='transactionName')
                                                 label(for='transactionName') İşlem Adı 
                                             .input-field.col.s12
-                                                input.datepicker(type='text')
+                                                input#transactionDate.datepicker(type='text', name='transactionDate')
                                                 label(for='transactionDate') İşlem Tarihi 
                                             .input-field.col.s12
-                                                select
+                                                select#transactionType(name='transactionType')
                                                     option(value='1') Alış
                                                     option(value='2') Satış
                                                 label İşlem Tip
                                             .input-field.col.s12
-                                                select
+                                                select#finalCurrecy(name='finalCurrency')
                                                     optgroup(label='Döviz')
                                                         option(value='1') Amerikan Doları
                                                         option(value='2') Euro
@@ -95,10 +95,10 @@ block content
                                                 label Yatırım Aracı
                                         .row        
                                             .input-field.col.s6
-                                                input#zip.validate(type='text')
+                                                input#transactionAmount.validate(type='text', name='transactionAmount')
                                                 label(for='transactionAmount') İşlem Tutarı
                                             .input-field.col.s6
-                                                select
+                                                select#transactionCurrecy(name='transactionCurrency')
                                                     optgroup(label='Döviz')
                                                         option(value='1') Türk Lirası
                                                         option(value='2') Amerikan Doları
@@ -112,9 +112,9 @@ block content
                                                 label İşlem Dövizi
                                         .row
                                             .input-field.col.s12
-                                                input.datepicker(type='text')
+                                                input#finalAmount.validate(type='text', name='finalAmount')
                                                 label(for='finalAmount') Yatırım Tutarı
-                                        div
+                                        .row
                                             input.btn.right(type='submit', value='Kaydet')
                                             a.btn-flat(href='#!')
 
