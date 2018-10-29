@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 const User = require('../models/user');
 const moment =  require('moment');
-var mid = require('../middleware');
+
 
 
 /* GET home page. */
@@ -176,7 +176,7 @@ router.post('/login', function (req,res,next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-        return res.redirect('/profile');
+        return res.redirect('/users/profile');
       }
     });
   } else {
@@ -203,7 +203,7 @@ router.post('/register', function (req,res,next) {
         return next(error);
       } else {
         req.session.userId = user._id;
-        return res.redirect('/profile')
+        return res.redirect('/users/profile')
       }
     })
   }
@@ -211,49 +211,6 @@ router.post('/register', function (req,res,next) {
     var err = new Error('Tüm alanlar doldurulmalıdır');
     err.status = 400;
     return next(err)
-  }
-})
-
-router.get('/profile', mid.requiresLogin, function(req, res, next) {
-  User.findById(req.session.userId)
-      .exec(function (error, user) {
-        if (error) {
-          return next(error);
-        } else {
-          var name = user.name;
-          var firstLetterName = name.charAt(0)
-          var lastName = user.lastName;
-          var firstLetterLastname = lastName.charAt(0)
-          return res.render('profile', { title: 'Profile', name: user.name, lastName: user.lastName, firstLetterName:firstLetterName, firstLetterLastname:firstLetterLastname });
-        }
-      });
-});
-
-router.get('/newTrans', mid.requiresLogin, function(req, res, next) {
-  User.findById(req.session.userId)
-      .exec(function (error, user) {
-        if (error) {
-          return next(error);
-        } else {
-          var name = user.name;
-          var firstLetterName = name.charAt(0)
-          var lastName = user.lastName;
-          var firstLetterLastname = lastName.charAt(0)
-          return res.render('newTrans', { title: 'Profile', name: user.name, lastName: user.lastName, firstLetterName:firstLetterName, firstLetterLastname:firstLetterLastname });
-        }
-      });
-});
-
-//user logout
-router.get('/logout', function (req,res,next) {
-  if(req.session) {
-    req.session.destroy(function(err){
-      if(err) {
-        return next(err);
-      } else {
-        return res.redirect('/');
-      }
-    })
   }
 })
 
@@ -272,17 +229,7 @@ router.get('/dailyUSD', function (req,res,next) {
     })) 
 })
 
-router.get('/lastRate', function (req,res,next) {
-  function lastRate() {
-    let lastApi = 'http://www.doviz.com/api/v1/currencies/USD/latest'
-    return axios.get(lastApi)
-  }
-  axios.all([lastRate()])
-    .then(axios.spread(function (usd) {
-      let lastUsd = usd.data
-      res.json(lastUsd)
-    }))
-})
+
 
 router.post('/newTrans', function(req,res,next){
    
