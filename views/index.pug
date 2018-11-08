@@ -5,49 +5,49 @@ block content
   body.has-fixed-sidenav
     header
       .navbar-fixed
-        nav.navbar.white
+        nav.navbar
           .nav-wrapper
             a.sidenav-trigger.left(href='#!', data-target='sidenav-left')
               i.material-icons.black-text menu
       ul#sidenav-left.sidenav.sidenav-fixed
         li
-          a.logo-container(href='/')
+          a.logo-container(href='/').white-text
             | Money Tracker
-            i.material-icons.left attach_money
+            i.material-icons.left.white-text attach_money
         li.no-padding
           ul.collapsible.collapsible-accordion
             li.bold.waves-effect.active
-              a.collapsible-header
+              a.collapsible-header.white-text
                 | Yatırım Araçları
-                i.material-icons.chevron chevron_left
+                i.material-icons.chevron.white-text chevron_left
               .collapsible-body
                 ul
                   li
-                    a.waves-effect.active(href='/')
+                    a.waves-effect.active(href='/').white-text
                       | Döviz
-                      i.material-icons money
+                      i.material-icons.white-text money
                   li
-                    a.waves-effect(href='/crypto')
+                    a.waves-effect(href='/crypto').white-text
                       | KriptoPara
-                      i.material-icons timeline
+                      i.material-icons.white-text timeline
                   li
-                    a.waves-effect(href='/stockmarket')
+                    a.waves-effect(href='/stockmarket').white-text
                       | Borsa & Altın
-                      i.material-icons swap_vert
+                      i.material-icons.white-text swap_vert
             li.bold.waves-effect
-              a.collapsible-header
+              a.collapsible-header.white-text
                 | Hesap İşlemleri
-                i.material-icons.chevron chevron_left
+                i.material-icons.chevron.white-text chevron_left
               .collapsible-body
                 ul
                   li
-                    a.waves-effect(href='/login')
+                    a.waves-effect(href='/login').white-text
                       | Giriş
-                      i.material-icons person
+                      i.material-icons.white-text person
                   li
-                    a.waves-effect(href='/register')
+                    a.waves-effect(href='/register').white-text
                       | Kayıt Ol
-                      i.material-icons how_to_reg
+                      i.material-icons.white-text how_to_reg
     main
       .container
         .masonry.row

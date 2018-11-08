@@ -4,25 +4,27 @@ const axios = require('axios');
 const User = require('../models/user');
 const moment =  require('moment');
 
-
+var config = {
+  headers: {'User-Agent' : 'Doviz'}
+}
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   function getUsd() {
-   let currencyApi = 'http://www.doviz.com/api/v1/currencies/USD/latest'
-    return axios.get(currencyApi)
+   let currencyApi = 'http://www.doviz.com/api/v5/currencies/USD/latest'
+    return axios.get(currencyApi, config)
   }
   function getEur() {
-    let currencyApi = 'http://www.doviz.com/api/v1/currencies/EUR/latest'
-    return axios.get(currencyApi)
+    let currencyApi = 'http://www.doviz.com/api/v5/currencies/EUR/latest'
+    return axios.get(currencyApi, config)
   }
   function getGbp() {
-    let currencyApi = 'http://www.doviz.com/api/v1/currencies/GBP/latest'
-    return axios.get(currencyApi)
+    let currencyApi = 'http://www.doviz.com/api/v5/currencies/GBP/latest'
+    return axios.get(currencyApi, config)
   }
   function getAll() {
-    let allApi = 'http://www.doviz.com/api/v1/currencies/all/latest'
-    return axios.get(allApi)
+    let allApi = 'http://www.doviz.com/api/v5/currencies/all/latest'
+    return axios.get(allApi, config)
   }
   axios.all([getUsd(), getEur(), getGbp(), getAll()])
     .then(axios.spread(function (usd, eur, gbp , all) {
@@ -51,24 +53,24 @@ router.get('/', function (req, res, next) {
 
 router.get('/crypto', function (req, res, next) {
   function getBtc() {
-    let cryptoApi = 'https://www.doviz.com/api/v1/coins/bitcoin/latest'
-    return axios.get(cryptoApi)
+    let cryptoApi = 'https://www.doviz.com/api/v5/coins/bitcoin/latest'
+    return axios.get(cryptoApi, config)
   }
   function getEth() {
-    let cryptoApi = 'https://www.doviz.com/api/v1/coins/ethereum/latest'
-    return axios.get(cryptoApi)
+    let cryptoApi = 'https://www.doviz.com/api/v5/coins/ethereum/latest'
+    return axios.get(cryptoApi, config)
   }
   function getXrp() {
-    let cryptoApi = 'https://www.doviz.com/api/v1/coins/ripple/latest'
-    return axios.get(cryptoApi)
+    let cryptoApi = 'https://www.doviz.com/api/v5/coins/ripple/latest'
+    return axios.get(cryptoApi, config)
   }
   function getLtc() {
-    let cryptoApi = 'https://www.doviz.com/api/v1/coins/litecoin/latest'
-    return axios.get(cryptoApi)
+    let cryptoApi = 'https://www.doviz.com/api/v5/coins/litecoin/latest'
+    return axios.get(cryptoApi, config)
   }
   function getAll() {
-    let allApi = 'https://www.doviz.com/api/v1/coins/all/latest'
-    return axios.get(allApi)
+    let allApi = 'https://www.doviz.com/api/v5/coins/all/latest'
+    return axios.get(allApi, config)
   }
   axios.all([getBtc(), getEth(), getXrp(), getLtc(), getAll()])
     .then(axios.spread(function (btc, eth, xrp, ltc, all) {
@@ -119,20 +121,20 @@ router.get('/crypto', function (req, res, next) {
 
 router.get('/stockMarket', function(req,res,next){
   function get100() {
-    let stockApi = 'http://www.doviz.com/api/v1/indexes/XU100/latest'
-    return axios.get(stockApi)
+    let stockApi = 'http://www.doviz.com/api/v5/indexes/XU100/latest'
+    return axios.get(stockApi, config)
   }
   function get50() {
-    let stockApi = 'http://www.doviz.com/api/v1/indexes/XU050/latest'
-    return axios.get(stockApi)
+    let stockApi = 'http://www.doviz.com/api/v5/indexes/XU050/latest'
+    return axios.get(stockApi, config)
   }
   function get30() {
-    let stockApi = 'http://www.doviz.com/api/v1/indexes/XU030/latest'
-    return axios.get(stockApi)
+    let stockApi = 'http://www.doviz.com/api/v5/indexes/XU030/latest'
+    return axios.get(stockApi, config)
   }
   function getGold() {
-    let goldApi = 'http://www.doviz.com/api/v1/golds/all/latest'
-    return axios.get(goldApi)
+    let goldApi = 'http://www.doviz.com/api/v5/golds/all/latest'
+    return axios.get(goldApi, config)
   }
   axios.all([get100(), get30(), get50(), getGold()])
     .then(axios.spread(function (x100, x50, x30, gold) {
@@ -215,19 +217,7 @@ router.post('/register', function (req,res,next) {
 })
 
 
-router.get('/dailyUSD', function (req,res,next) {
-  function dailyUsd() {
-    var end = moment().subtract(1, 'days').format('YYYY-MM-DD')
-    var start = moment().subtract(7, 'days').format('YYYY-MM-DD')
-    let dailyApi = ' https://doviz.com/api/v1/currencies/USD/archive?start='+start+'-16&end='+end
-     return axios.get(dailyApi)
-   }
-   axios.all([dailyUsd()])
-    .then(axios.spread(function(usd){
-      let dailyUSD = usd.data
-      res.json(dailyUSD)
-    })) 
-})
+
 
 
 
